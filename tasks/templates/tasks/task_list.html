@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>N &amp; G – 12 June 2027</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Jost:wght@300;400;500&display=swap">
+<style>
+:root{--bg:#E8EEE9;--ink:#1F3A32;--soft:#4F6A60;--gold:#9A7633;--card:#F6F9F6;--line:#BFCFC5;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13211C;--ink:#E7EFE9;--soft:#A5BBB0;--gold:#D4B16A;--card:#1B2E27;--line:#2F4A40}}
+:root[data-theme="dark"]{--bg:#13211C;--ink:#E7EFE9;--soft:#A5BBB0;--gold:#D4B16A;--card:#1B2E27;--line:#2F4A40}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Jost',system-ui,sans-serif;font-weight:300;line-height:1.6;text-align:center}
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:3rem 1.5rem}
+.intro{font-size:1.05rem;color:var(--soft);letter-spacing:.04em;margin:0 0 1rem}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(5rem,26vw,13rem);line-height:.9;margin:0;letter-spacing:-.02em}
+h1 em{color:var(--gold);font-weight:300;padding:0 .08em}
+.date{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.6rem,5vw,2.4rem);margin:1.5rem 0 .25rem}
+.place{color:var(--soft);margin:0;font-size:1.1rem}
+.count{display:flex;gap:1.25rem;justify-content:center;margin-top:2.5rem}
+.count div{min-width:4.2rem}
+.count b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:2.4rem;line-height:1}
+.count span{font-size:.85rem;color:var(--soft)}
+section{max-width:34rem;margin:0 auto;padding:3.5rem 1.5rem}
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-style:italic;font-size:2rem;margin:0 0 1rem}
+.details{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:none}
+.details dl{max-width:34rem;margin:0 auto;display:grid;gap:1.25rem}
+.details dt{font-size:.9rem;color:var(--soft)}
+.details dd{margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.7rem}
+.links{display:grid;gap:.75rem;margin-top:1.5rem}
+.btn{display:block;padding:.95rem 1.25rem;border:1px solid var(--ink);color:var(--ink);text-decoration:none;font:400 1rem 'Jost',sans-serif;background:transparent;cursor:pointer;border-radius:999px}
+.btn.main{background:var(--ink);color:var(--bg)}
+.btn:hover{border-color:var(--gold)}
+.btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+footer{padding:2rem 1.5rem 3rem;color:var(--soft);font-size:.95rem}
+footer strong{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:1.5rem;color:var(--ink)}
+</style>
+</head>
+<body>
+<header class="hero">
+  <p class="intro">We’re getting married</p>
+  <h1>N<em>&amp;</em>G</h1>
+  <p class="date">Saturday, 12 June 2027</p>
+  <p class="place">IFAK</p>
+  <div class="count" role="timer" aria-label="Countdown to the wedding">
+    <div><b id="d">–</b><span>days</span></div>
+    <div><b id="h">–</b><span>hours</span></div>
+    <div><b id="m">–</b><span>minutes</span></div>
+    <div><b id="s">–</b><span>seconds</span></div>
+  </div>
+</header>
+
+<section class="details">
+  <h2>The day</h2>
+  <dl>
+    <div><dt>Date</dt><dd>12 June 2027</dd></div>
+    <div><dt>Where</dt><dd>IFAK</dd></div>
+  </dl>
+</section>
+
+<section>
+  <h2>Join us</h2>
+  <p>We would love to celebrate with you. Save the date and find your way to the venue.</p>
+  <div class="links">
+    <a class="btn main" href="https://www.google.com/maps/search/?api=1&amp;query=IFAK" target="_blank" rel="noopener">Open location in Google Maps</a>
+    <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=IFAK" target="_blank" rel="noopener">Get directions</a>
+    <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=N%20%26%20G%20Wedding&amp;dates=20270612/20270613&amp;location=IFAK" target="_blank" rel="noopener">Add to Google Calendar</a>
+    <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Share on WhatsApp</a>
+    <button class="btn" id="copy" type="button">Copy invitation link</button>
+  </div>
+</section>
+
+<footer>
+  <strong>N &amp; G</strong><br>
+  12 · 06 · 2027
+</footer>
+
+<script>
+(function(){
+  var target=new Date(2027,5,12,0,0,0).getTime();
+  function pad(n){return String(n).padStart(2,'0')}
+  function tick(){
+    var t=Math.max(0,target-Date.now()),
+        s=Math.floor(t/1000);
+    document.getElementById('d').textContent=Math.floor(s/86400);
+    document.getElementById('h').textContent=pad(Math.floor(s%86400/3600));
+    document.getElementById('m').textContent=pad(Math.floor(s%3600/60));
+    document.getElementById('s').textContent=pad(s%60);
+  }
+  tick();setInterval(tick,1000);
+  var msg='You’re invited to the wedding of N & G, 12 June 2027 at IFAK. ';
+  var wa=document.getElementById('wa');
+  try{wa.href='https://wa.me/?text='+encodeURIComponent(msg+location.href)}catch(e){}
+  document.getElementById('copy').addEventListener('click',function(){
+    var b=this;
+    try{
+      navigator.clipboard.writeText(location.href).then(function(){b.textContent='Link copied'})
+        .catch(function(){b.textContent='Copy the link from the address bar'});
+    }catch(e){b.textContent='Copy the link from the address bar'}
+  });
+})();
+</script>
+</body>
+</html>
